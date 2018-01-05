@@ -34,7 +34,7 @@ def show_me_parking():
         user = models.User(lat, lng, radius)
         response = logic.find_parking(user, store)
         return utils.generate_response(response, "ok", "Parking found")
-    except Exception as e:
+    except Exception as e:  # this except needs to be re-arranged
         err = "Request made w/o lat, lng and/or radius parameter"
         logging.error("{0} | {1}".format(err, e))
         return utils.generate_error(err, "invalid")
@@ -52,7 +52,7 @@ def block_my_parking():
         store[parking_name].taken = True
         return utils.generate_response("success", "ok",
                                        "Parking has been reserved")
-    except Exception as e:
+    except Exception as e:  # this except needs to be re-arranged
         err = "Request made w/o name"
         logging.error("{0} | {1}".format(err, e))
         return utils.generate_error(err, "invalid")
